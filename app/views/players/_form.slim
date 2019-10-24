@@ -1,0 +1,7 @@
+a name='player-form'
+- if !params[:popup] && !request.xhr?
+  = form_for(player) do |form|
+    = render 'form_body', form: form, player: player
+- else
+  = form_with(model: player, html: {id: 'new-player-form'}) do |form|
+    = render 'form_body', form: form, player: player

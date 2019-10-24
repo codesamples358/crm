@@ -1,0 +1,25 @@
+<header class="main-header">
+  <nav class="navbar navbar-static-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a href="<%= root_url %>" class="navbar-brand"><b>New</b>CRM</a>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+          <i class="fa fa-bars"></i>
+        </button>
+      </div>
+
+      <% if user_signed_in? %>
+        <%= render "layouts/navigation/header_left_menu" %>
+      <% end %>
+
+      <!-- /.navbar-collapse -->
+      
+      <% if user_signed_in? %>
+        <%= render "layouts/navigation/header_right_menu" %>
+      <% end %>
+      
+      <!-- /.navbar-custom-menu -->
+    </div>
+    <!-- /.container-fluid -->
+  </nav>
+</header>

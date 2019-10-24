@@ -1,0 +1,11 @@
+- input_attributes ||= {}
+- input_type ||= :text_field
+
+.form-group class=error_class(record, attribute)
+  = form.label attribute, style: "color: black;"
+  .input-group
+    .input-group-addon
+      i.fa.fa-clock-o
+    = form.text_field attribute, {class: "form-control", 'data-inputmask': "'alias': 'hh:mm'", "data-mask": true}.merge(input_attributes)
+
+  = error_on record, attribute

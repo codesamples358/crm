@@ -1,0 +1,5 @@
+- calls ||= @calls
+
+= render 'shared/sortable_table', collection: calls, \
+    columns: [:time, :caller, :to, :duration, nil], \
+    values: {time: :time_tag, nil => '_control_icons'}

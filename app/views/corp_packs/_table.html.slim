@@ -1,0 +1,5 @@
+= render 'shared/sortable_table', collection: @corp_packs, \
+  columns: [:time, :player, :status, :comment, :prepayment_sum,
+            :prepayment_deadline, :profit, :mode, :game_center, :created_at, nil ], \
+  skip: [:player_id, :profit, :comment, :player ], \
+  values: {:player => 'player.try(:name)', :time => :date_and_time, nil => '_control_icons' }

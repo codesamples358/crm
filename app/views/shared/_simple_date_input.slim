@@ -1,0 +1,11 @@
+- input_attributes ||= {}
+- default_label = (@model ? I18n.translate("activerecord.attributes.#{@model}.#{attribute}") : '')
+- label ||= default_label
+
+
+.form-group
+  label = label
+  .input-group
+    .input-group-addon
+      i.fa.fa-calendar
+    = form.text_field attribute, {class: "form-control date-picker", 'data-inputmask': "'alias': 'dd.mm.yyyy'", "data-mask": true}.merge(input_attributes)

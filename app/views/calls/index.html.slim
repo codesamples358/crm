@@ -1,0 +1,26 @@
+h2.page-header Звонки
+.row
+  .col-md-12
+    .nav-tabs-custom
+      ul.nav.nav-tabs
+        li.active
+          a href="#tab_inbound" data-toggle="tab" Входящие
+
+        li
+          a href="#tab_outbound" data-toggle="tab" Исходящие
+
+        li
+          a href="#tab_all" data-toggle="tab" Все
+
+      .tab-content
+        .tab-pane.active id="tab_inbound"
+          - params[:call_type] = 'inbound'
+          = render 'table', calls: @calls.inbound
+
+        .tab-pane id="tab_outbound"
+          - params[:call_type] = 'outbound'
+          = render 'table', calls: @calls.outbound
+
+        .tab-pane id="tab_all"
+          - params[:call_type] = nil
+          = render 'table'

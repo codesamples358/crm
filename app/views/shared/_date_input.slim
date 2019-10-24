@@ -1,0 +1,11 @@
+- input_attributes ||= {}
+
+.form-group class=error_class(record, attribute)
+  = form.label attribute, style: "color: black;"
+
+  .input-group
+    .input-group-addon
+      i.fa.fa-calendar
+    = form.text_field attribute, {class: "form-control date-picker", 'data-inputmask': "'alias': 'dd.mm.yyyy'", "data-mask": true}.merge(input_attributes)
+
+  = error_on record, attribute

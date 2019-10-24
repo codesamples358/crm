@@ -1,0 +1,24 @@
+- hidden ||= false
+
+tr.service-row data-cps-id=cps.id id=('new-service-row' if hidden)
+  
+  td.service-num = cps.corp_pack.corp_pack_services.index(cps) + 1
+  td= fields.check_box  :confirmed
+  td.service-name = cps.service.try(:name)
+  td= fields.text_field :comment
+  td= fields.text_field :remind_at
+  td= fields.check_box :ordered
+  td= fields.text_field :price
+  td
+    = fields.text_field :cost
+    = fields.hidden_field :service_id, class: 'service-id-input'
+    - unless cps.new_record?
+      = fields.hidden_field :id
+
+  td
+    - if cps.new_record?
+      a.remove-service
+        .i.fa.fa-trash.fa-hover
+    - else           
+      = link_to corp_pack_service_path(cps, authenticity_token: form_authenticity_token), method: :delete, data: {confirm: "Вы уверены?"} do
+          .i.fa.fa-trash.fa-hover

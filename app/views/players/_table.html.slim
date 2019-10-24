@@ -1,0 +1,6 @@
+- columns = [:name, :phone, :email, :city, :created_at, nil]
+- last_column = params[:popup] == '1' ? '_choose_button' : '_control_icons'
+
+= render 'shared/sortable_table', collection: @players, \
+    columns: columns, \
+    values: { nil => last_column }

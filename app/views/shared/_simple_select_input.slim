@@ -1,0 +1,10 @@
+- input_attributes ||= {}
+- include_blank ||= "-- Выберите --"
+- no_blank ||= false
+- default_label = (@model ? I18n.translate("activerecord.attributes.#{@model}.#{attribute}") : '')
+- label ||= default_label
+- selected = input_attributes[:multiple] ? params[form.object.class.name.underscore].try(:[], attribute) : form.object.send(attribute)
+
+.form-group
+  label = label
+  = form.select(attribute, options_for_select(select_options, selected), { include_blank: !no_blank && !input_attributes[:multiple] && include_blank }, {class: "form-control"}.merge(input_attributes))

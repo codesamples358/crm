@@ -1,0 +1,13 @@
+- input_attributes ||= {}
+- input_type ||= :text_field
+- record ||= form.object
+
+.form-group class=error_class(record, attribute)
+  = form.label attribute, style: "color: black;"
+  - if input_type == :select
+    - val = record.send(attribute)
+    - val = val && '1' || '0' if val.nil? || val == true || val == false
+    = form.select(attribute, options_for_select(select_options, val), {}, {class: "form-control"}.merge(input_attributes))
+  - else
+    = form.send(input_type, attribute, {class: "form-control"}.merge(input_attributes))
+  = error_on record, attribute

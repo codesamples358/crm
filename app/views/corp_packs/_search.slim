@@ -1,0 +1,47 @@
+- @model = :corp_pack
+
+= form_for @corp_pack, url: corp_packs_path, method: :get do |form|
+  .box-body
+    .row
+      .col-md-4
+        = render "shared/simple_date_input", form: form, attribute: :date_from, label: "Дата от"
+
+      .col-md-4
+        = render "shared/simple_date_input", form: form, attribute: :date_to, label: "Дата по"
+
+      .col-md-4
+        = render "shared/simple_date_input", form: form, attribute: :prepayment_deadline
+
+    .row
+      .col-md-4
+        = render "shared/simple_select_input", form: form, attribute: :info_source, select_options: Player::ATTR_VALUES[:info_source]
+
+      .col-md-4
+        = render "shared/simple_select_input", form: form, attribute: :status, select_options: CorpPack::ATTR_VALUES[:status], input_attributes: { multiple: true }
+
+      .col-md-4
+        = render "shared/simple_select_input", form: form, attribute: :mode, select_options: CorpPack::ATTR_VALUES[:mode], input_attributes: { multiple: true }
+
+    .row
+      .col-md-4
+        = render "shared/collection_select", form: form, attribute: :manager_id, collection: User.all
+
+      .col-md-4
+        = render "shared/collection_select", form: form, attribute: :player_id, collection: Player.all
+
+      .col-md-4
+        = render "shared/simple_date_input", form: form, attribute: :created_at, label: "Создано"
+
+    .row
+      .col-md-4
+        = render "shared/simple_select_input", form: form, attribute: :game_center, select_options: CorpPack::ATTR_VALUES[:game_center], no_blank: true
+
+      .col-md-4
+        = render "shared/simple_date_input", form: form, attribute: :prepayed_at
+
+
+  .box-footer
+    .row
+      .col-md-12
+        / div style='float:right'
+        = form.submit("Найти")

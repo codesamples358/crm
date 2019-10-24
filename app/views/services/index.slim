@@ -1,0 +1,23 @@
+.row
+  .col-md-12
+    .box.box-primary
+      .box-header.with-border
+        h3.box-title Доп. услуги
+      .box-body
+        table.table.table-bordered.table-hover
+          thead
+            tr
+              th #
+              th Услуга
+              th Действия
+          tbody
+            - @services.each do |service|
+              tr
+                td = service.id
+                td = service.name
+                td
+                  - if !@corp_pack || @corp_pack && !service.cps_present
+                    button.btn-block.btn-primary.add-service data-service-id=service.id data-service-name=service.name Добавить
+                  / span.glyphicon.glyphicon-plus.add-service data-service-id=service.id data-service-name=service.name
+
+      .box-footer

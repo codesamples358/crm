@@ -1,0 +1,124 @@
+= form_for(corp_pack) do |f|
+  .box-body
+    .row
+      .col-md-4
+        = render "shared/form_group", form: f, record: corp_pack, attribute: :manager_id, input_type: :select, select_options: User.all.map {|user| [user.name, user.id]}
+      .col-md-4
+        = render "shared/form_group", form: f, record: corp_pack, attribute: :game_center, input_type: :select, select_options: CorpPack::ATTR_VALUES[:game_center]
+
+    .row
+      .col-md-4
+        = render "shared/form_group", form: f, record: corp_pack, attribute: :mode, input_type: :select, select_options: CorpPack::ATTR_VALUES[:mode]
+
+      .col-md-4
+        = render "shared/form_group", form: f, record: corp_pack, attribute: :status, input_type: :select, select_options: CorpPack::ATTR_VALUES[:status]
+
+    .row
+      .col-md-4
+        = render "shared/form_group", form: f, record: corp_pack, attribute: :call_id, input_type: :select, select_options: [["-- не присвоен --", nil]] + Call.recent.inbound.map { |call| [ "#{call.time_tag} #{call.caller}", call.id ] }
+
+
+
+  .box-header.with-border
+    h3.box-title  Предоплата
+
+
+  .box-body
+    .row
+      .col-md-4
+        = render "shared/form_group", form: f, record: corp_pack, attribute: :prepayment_type, input_type: :select, select_options: CorpPack::ATTR_VALUES[:payment_type]
+
+      .col-md-4
+        = render "shared/form_group", form: f, record: corp_pack, attribute: :prepayment_sum
+
+      .col-md-4
+        = render "shared/date_input", form: f, record: corp_pack, attribute: :prepayment_deadline
+
+  .box-header.with-border
+    h3.box-title  Итоговая оплата
+
+
+  .box-body
+    .row
+      .col-md-4
+        = render "shared/form_group", form: f, record: corp_pack, attribute: :payment_type, input_type: :select, select_options: CorpPack::ATTR_VALUES[:payment_type]
+
+
+  .box-header.with-border
+    h3.box-title  Дата и время проведения
+
+
+  .box-body
+    .row
+      .col-md-4
+        = render "shared/date_input", form: f, record: corp_pack, attribute: :date
+
+      .col-md-4
+        = render "shared/time_input", form: f, record: corp_pack, attribute: :time
+
+  .box-header.with-border
+    h3.box-title  Информация об игроке
+
+  .box-body
+    .row
+      .col-md-4
+        - coll = corp_pack.player && [corp_pack.player] || []
+        = render "shared/select_input", form: f, record: corp_pack, attribute: :player_id, collection: coll, no_blank: true, error_attribute: :player
+
+      .col-md-3
+        label &nbsp;
+        button.btn.btn-block.btn-primary id="create-player-btn" data-url=new_player_path(popup: '1') Создать и добавить игрока
+
+    .row
+      .col-md-4
+        label Проверка наличия игрока по телефону
+
+        .form-group
+          .input-group
+            .input-group-addon
+              i.fa.fa-phone
+
+            / = f.text_field attribute, class: "form-control", 'data-inputmask': '"mask": "+7 (999) 999-9999"', 'data-mask': true
+
+            input id="player-phone" type="text" class='form-control' data-inputmask='"mask": "+7 (999) 999-9999"' data-mask=true
+
+      .col-md-1
+        label &nbsp;
+        button.btn.btn-block.btn-primary#find-player-by-phone Найти
+
+
+
+  .box-header.with-border
+    h3.box-title  Доп. Услуги
+
+  .box-body
+    a name="services"
+    table.table.table-bordered.table-hover
+      thead
+        tr
+          th #
+          th Подтверждена
+          th Услуги
+          th Комментарий
+          th Дата напоминания
+          th Заказана
+          th Цена для клиента
+          th Себестоимость
+          th
+      tbody
+        - @corp_pack.corp_pack_services.each do |cps|
+          = f.fields_for :corp_pack_services, cps do |fields|
+            = render 'service', fields: fields, cps: cps
+
+        - cps = @corp_pack.corp_pack_services.new
+        = f.fields_for :corp_pack_services, cps do |fields|
+          = render 'service', fields: fields, cps: cps, hidden: true
+
+
+    .row
+      .col-md-2
+        - url = @corp_pack.new_record? ? services_path : corp_pack_services_path(@corp_pack)
+        button.btn.btn-block.btn-primary#add_service_btn data-url=url Добавить услугу
+
+  .box-footer
+    = f.submit(corp_pack.new_record? ? "Создать" : "Сохранить")

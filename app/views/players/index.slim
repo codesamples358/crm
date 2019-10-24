@@ -1,0 +1,18 @@
+h2.page-header Игроки
+
+.row
+  .col-md-12
+    .box.box-primary
+      .box-header.with-border
+        h3.box-title Параметры поиска
+      = render 'search'
+
+      .box-header.with-border
+        h3.box-title Игроки
+
+      .box-body
+        a name='search-results'
+        = render 'table'
+      - unless params[:popup]
+        .box-footer
+          = link_to "Создать", new_player_url

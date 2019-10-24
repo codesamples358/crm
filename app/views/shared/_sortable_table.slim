@@ -1,0 +1,48 @@
+- values ||= {}
+- model ||= collection.try(:klass) && collection.klass.name.underscore.to_sym
+- skip ||= []
+
+.dataTables_wrapper.form-inline.dt-bootstrap
+  .row
+    .col-sm-12
+      table.table.table-bordered.table-hover.dataTable
+        thead
+          tr
+            - columns.each do |column|
+              - if column
+                - unless skip.include?(column)
+                  = sortable_th(model, column)
+                - else
+                  th
+                    = I18n.t "activerecord.attributes.#{model}.#{column}"
+              - else
+                th
+
+        tbody
+          - collection.each do |record|
+            tr
+              - columns.each do |column|
+                - value_attr = values[column] || column
+
+                td
+                  - if value_attr.is_a?(Symbol)
+                    = record.send(value_attr)
+                  - elsif value_attr.is_a?(String)
+                    - if value_attr.starts_with?("_")
+                      = render(value_attr.from(1), model => record)
+                    - else
+                      = record.instance_eval(value_attr)
+
+  - if collection.total_pages > 1
+    .row
+      .col-sm-5
+        .dataTables_info
+          = page_entries_info collection
+
+      .col-sm-7
+        .dataTables_paginate.paging_simple_numbers
+          ul.pagination
+            = will_paginate collection, class: 'dataTables_paginate'
+
+    - if params[:page]
+      a class='pagination-link-active'

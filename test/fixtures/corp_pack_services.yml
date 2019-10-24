@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  corp_pack: one
+  service: one
+  cost: 9.99
+  price: 9.99
+  ordered: false
+  comment: MyText
+  remind_at: 2019-01-30
+
+two:
+  corp_pack: two
+  service: two
+  cost: 9.99
+  price: 9.99
+  ordered: false
+  comment: MyText
+  remind_at: 2019-01-30

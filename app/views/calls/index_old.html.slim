@@ -1,0 +1,36 @@
+section.content
+  .row
+    .col-md-12
+      .box.box-primary
+        .box-header.with-border
+          h3.box-title Звонки
+        .box-body
+          .dataTables_wrapper.form-inline.dt-bootstrap
+            .row
+              .col-sm-12
+                table.table.table-bordered.table-hover.dataTable
+                  thead
+                    tr
+                      = sortable_th(:call, :time)
+                      = sortable_th(:call, :caller)
+                      = sortable_th(:call, :to)
+                      = sortable_th(:call, :duration)
+                      th
+                  tbody
+                    - @calls.each do |call|
+                      tr
+                        td = call.time_tag
+                        td = call.caller
+                        td = call.to
+                        td = call.duration
+                        td
+
+
+            .row
+              .col-sm-5
+                .dataTables_info = page_entries_info @calls
+
+              .col-sm-7
+                .dataTables_paginate.paging_simple_numbers
+                  ul.pagination
+                    = will_paginate @calls, class: 'dataTables_paginate'

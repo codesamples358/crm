@@ -1,0 +1,5 @@
+a href=edit_corp_pack_path(corp_pack)
+  .i.fa.fa-pencil.fa-hover
+br
+= link_to corp_pack_path(corp_pack, authenticity_token: form_authenticity_token), method: :delete, data: {confirm: "Вы уверены?"} do
+  .i.fa.fa-trash.fa-hover

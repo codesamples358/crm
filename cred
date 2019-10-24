@@ -1,0 +1,1 @@
+EDITOR="atom --wait" bin/rails credentials:edit

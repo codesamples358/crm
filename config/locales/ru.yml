@@ -1,0 +1,117 @@
+ru:
+  will_paginate:
+    previous_label: 'Назад'
+    next_label: 'Дальше'
+
+    page_entries_info:
+      multi_page_html: Результаты с %{from} по %{to} из %{count}
+      single_page_html: Результатов %{count}
+
+  activerecord:
+    attributes:
+      user:
+        time_zone: "Часовой пояс"
+        email: "Эл. почта"
+        password: "Пароль"
+        password_confirmation: "Подтверждение"
+        name: Имя
+        remember_me: Запомнить меня
+
+      player:
+        email: Email
+        name: ФИО
+        last_name: Фамилия
+        first_name: Имя
+        phone: Телефон
+        phone2: Дополнительный телефон
+        city: Города
+        blacklist: В черном списке
+        receive_email: Согласие получать email рассылку
+        receive_sms: Согласие получать sms рассылку
+        male: Пол
+        info_source: Источник информации
+        comment: Комментарий
+        child_name: ФИО ребенка
+        child_birth_date: Дата рождения ребенка
+        created_at: "Дата создания"
+        phone_no_mask: Телефон без маски
+
+      corp_pack:
+        manager_id: Менеджер
+        player_id: Контактное лицо
+        player: Контактное лицо
+        game_center: Игровые центры
+        mode: Режим корп. пакета
+        status: Статус
+        call_id: Звонок
+        time: Дата
+        profit: Прибыль
+        comment: Комментарий
+        created_at: Дата
+        info_source: Источник
+        prepayed_at: Предоплата внесена
+
+        prepayment_type: Тип оплаты
+        # prepayment_sum: Размер полученной предоплаты
+        prepayment_sum: Получено предоплаты
+        # prepayment_deadline: Крайний срок внесения предоплаты
+        prepayment_deadline: Крайний срок
+        payment_type: Тип итоговой оплаты
+
+        date: Дата
+        time: Время начала
+
+      call:
+        time: Время
+        caller: Кто
+        to: Кому
+        duration: Продолжительность
+
+    errors:
+      attributes:
+        taken:   "Уже существует"
+        blank:   "Необходимо заполнить"
+        invalid: "Ввдено неверно"
+        not_a_number: "Введите число"
+
+
+      models:
+        user:
+          attributes:
+            domain_name:
+              invalid: 'Неправильный формат домена, например mysite.com'
+              not_unique: 'Уже существует'
+
+            password:
+              too_short: "Слишком короткий"
+              blank: "Введите пароль"
+
+            name:
+              blank: "Введите имя"
+              taken: 'Уже существует'
+
+            password_confirmation:
+              confirmation: "Не совпадает"
+
+            email:
+              blank: "Введите эл. почту"
+              taken: "Уже есть"
+              invalid: "введена неверно"
+
+        player:
+          attributes:
+            phone:
+              taken: "уже есть"
+              invalid: "введен неверно"
+              blank: "введите телефон"
+            phone2:
+              taken: "уже есть"
+              invalid: "введен неверно"
+              blank: "введите телефон"
+
+            email:
+              taken: "уже есть"
+              invalid: "введен неверно"
+
+            name:
+              blank: "Введите имя"

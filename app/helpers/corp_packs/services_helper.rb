@@ -1,0 +1,2 @@
+module CorpPacks::ServicesHelper
+end

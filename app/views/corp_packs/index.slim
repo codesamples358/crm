@@ -1,0 +1,19 @@
+h2.page-header Корп. пакеты
+/.row
+  .col-md-12
+    h2 Корп. пакеты
+.row
+  .col-md-12
+    .box.box-primary
+      .box-header.with-border
+        h3.box-title Параметры поиска
+      = render 'search'
+
+      / .box-header.with-border
+        h3.box-title Корп. пакеты
+
+      .box-body
+        = render 'table'
+
+      .box-footer
+        = link_to "Создать", new_corp_pack_path

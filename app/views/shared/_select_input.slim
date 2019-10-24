@@ -1,0 +1,11 @@
+- input_attributes ||= {}
+- input_type ||= :text_field
+- value_field ||= :id
+- name_field ||= :name
+- no_blank ||= false
+- error_attribute ||= attribute
+
+.form-group class=error_class(record, error_attribute)
+  = form.label attribute, style: "color: black;"
+  = form.collection_select(attribute, collection, value_field, name_field, {include_blank: !no_blank}, class: 'form-control')
+  = error_on record, error_attribute

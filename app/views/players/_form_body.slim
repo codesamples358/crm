@@ -1,0 +1,37 @@
+.box-body
+  = render "shared/form_group", form: form, record: player, attribute: :name, input_attributes: {autofocus: true}
+
+  = render "shared/form_group", form: form, record: player, attribute: :city, input_type: :select, select_options: ['Сургут']
+
+  = render "players/phone_input", player: player, form: form, attribute: :phone
+  = render "players/phone_input", player: player, form: form, attribute: :phone2
+  = render "shared/form_group", form: form, record: player, attribute: :email, input_attributes: {autocomplete: "email"}
+
+
+  = render "shared/check_box", form: form, record: player, attribute: :blacklist
+  = render "shared/check_box", form: form, record: player, attribute: :receive_email
+  = render "shared/check_box", form: form, record: player, attribute: :receive_sms
+
+
+  = render "shared/form_group", form: form, record: player, attribute: :city, input_type: :select, select_options: ['Сургут']
+
+  = render "shared/form_group", form: form, record: player, attribute: :male, input_type: :select, select_options: [['Мужской', 1], ['Женский', 0]]
+
+  = render "shared/form_group", form: form, record: player, attribute: :info_source, input_type: :select, select_options: ['Друзья', 'Интернет', 'Соц. сети', 'Другое']
+
+
+  = render "shared/form_group", form: form, record: player, attribute: :comment
+
+
+.box-header.with-border
+  h3.box-title Информация о ребенке
+
+.box-body
+  = render "shared/form_group", form: form, record: player, attribute: :child_name, input_attributes: {autofocus: true}
+
+  /= render "players/date_input", record: player, form: form, attribute: :child_birth_date, input_attributes: {id: 'datepicker'}
+  = render "players/date_input", record: player, form: form, attribute: :child_birth_date
+
+.box-footer
+  = form.submit(player.new_record? ? "Создать" : "Сохранить")
+  / = form.submit(player.new_record? ? "Создать" : "Сохранить")

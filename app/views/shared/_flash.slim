@@ -1,0 +1,11 @@
+- lte_alias = {:notice => 'success', :alert => 'alert', :error => 'danger'}[flash_type]
+- lte_icon = {:notice => 'check', :alert => 'warning', :error => 'ban'}[flash_type]
+- flash_text ||= ''
+
+.div.alert.alert-dismissable class="alert-#{lte_alias}"
+  button.close type="button" class="close" data-dismiss="alert" aria-hidden="true" ×
+  h4
+    i.icon.fa class="fa-#{lte_icon}"
+    = flash_header
+
+  = flash_text

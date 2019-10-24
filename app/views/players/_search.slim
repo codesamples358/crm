@@ -1,0 +1,48 @@
+- @model = :player
+
+= form_for @player, url: players_path, method: :get do |form|
+  .box-body
+    .row
+      .col-md-4
+        = render "shared/simple_select_input", form: form, attribute: :city, select_options: ['Сургут'], no_blank: true
+
+      .col-md-4
+        = render "shared/form_group", form: form, attribute: :name
+
+      .col-md-4
+        = render "shared/form_group", form: form, attribute: :email
+
+    .row
+      .col-md-4
+        = render "phone_input", form: form, attribute: :phone
+
+      .col-md-4
+        = render "shared/form_group", form: form, attribute: :phone_no_mask
+
+      .col-md-4
+        = render "shared/simple_date_input", form: form, attribute: :created_at
+        = hidden_field_tag :popup, params[:popup]
+    /
+    / .row
+    /   .col-md-4
+    /     = render "shared/collection_select", form: form, attribute: :manager_id, collection: User.all
+    /
+    /   .col-md-4
+    /     = render "shared/collection_select", form: form, attribute: :player_id, collection: Player.all
+    /
+    /   .col-md-4
+    /     = render "shared/simple_date_input", form: form, attribute: :created_at, label: "Создано"
+    /
+    / .row
+    /   .col-md-4
+    /     = render "shared/simple_select_input", form: form, attribute: :game_center, select_options: CorpPack::ATTR_VALUES[:game_center], no_blank: true
+    /
+    /   .col-md-4
+    /     = render "shared/simple_date_input", form: form, attribute: :prepayed_at
+    /
+
+  .box-footer
+    .row
+      .col-md-12
+        / div style='float:right'
+        = form.submit("Найти")

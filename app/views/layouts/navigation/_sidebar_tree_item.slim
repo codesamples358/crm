@@ -1,0 +1,11 @@
+li.treeview class=active_class_on_pages(*items.values)
+  a href="#"
+    / i.fa.fa-th
+    span = title
+    span.pull-right-container
+      i.fa.fa-angle-left.pull-right
+
+  ul.treeview-menu
+    - items.each do |sub_title, link|
+      = sidebar_link sub_title, link
+      

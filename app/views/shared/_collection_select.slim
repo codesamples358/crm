@@ -1,0 +1,13 @@
+- value_field ||= :id
+- name_field ||= :name
+
+
+- input_attributes ||= {}
+- include_blank ||= "-- Выберите --"
+- no_blank ||= false
+- default_label = (@model ? I18n.translate("activerecord.attributes.#{@model}.#{attribute}") : '')
+- label ||= default_label
+
+.form-group
+  label = label
+  = form.collection_select(attribute, collection, value_field, name_field, { include_blank: !no_blank && include_blank }, {class: "form-control"}.merge(input_attributes))

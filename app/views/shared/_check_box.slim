@@ -1,0 +1,14 @@
+- input_attributes ||= {}
+- input_type ||= :text_field
+
+.checkbox class=error_class(record, attribute)
+  label style="color: black;"  
+    = form.check_box(attribute)
+    = record.class.human_attribute_name(attribute)
+
+
+
+/.checkbox
+  label
+    input type="checkbox" Check me out
+

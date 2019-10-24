@@ -1,0 +1,12 @@
+- record ||= form.object
+
+.form-group class=error_class(record, attribute)
+  = form.label attribute, style: "color: black;"
+
+  .input-group
+    .input-group-addon
+      i.fa.fa-phone
+
+    = form.text_field attribute, class: "form-control", 'data-inputmask': '"mask": "+7 (999) 999-9999"', 'data-mask': true
+
+  = error_on record, attribute
